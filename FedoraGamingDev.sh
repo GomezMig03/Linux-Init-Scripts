@@ -28,7 +28,12 @@ dnf config-manager --add-repo "https://dl.winehq.org/wine-builds/fedora/${fedora
 dnf install -y kmod-v4l2loopback
 
 # Install various packages
-dnf install -y git steam wget lutris gamemode wine winehq-stable discord okular
+dnf install steam -y
+dnf install lutris -y
+dnf install discord -y
+dnf install git -y
+dnf install wine -y
+dnf install okular -y
 
 # Install Flatpak applications
 flatpak install -y flathub com.obsproject.Studio
