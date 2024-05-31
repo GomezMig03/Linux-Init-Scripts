@@ -61,7 +61,7 @@ flatpak install -y flathub com.parsecgaming.parsec
 # Install Heroic Games Launcher
 latest_version=$(curl -sL https://api.github.com/repos/Heroic-Games-Launcher/HeroicGamesLauncher/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")' | sed 's/^v//')
 wget "https://github.com/Heroic-Games-Launcher/HeroicGamesLauncher/releases/download/v${latest_version}/heroic-${latest_version}.x86_64.rpm"
-"dnf install -y heroic-${latest_version}.x86_64.rpm"
+dnf install -y "heroic-${latest_version}.x86_64.rpm"
 rm "heroic-${latest_version}.x86_64.rpm"
 
 # Install prerequisites for EmuDeck
