@@ -40,6 +40,7 @@ flatpak install -y flathub com.obsproject.Studio
 flatpak install -y flathub com.sindresorhus.Caprine
 flatpak install -y flathub com.parsecgaming.parsec
 flatpak install -y flathub one.ablaze.floorp
+flatpak install -y flathub net.davidotek.pupgui2
 
 # Install Heroic Games Launcher
 latest_version=$(curl -sL https://api.github.com/repos/Heroic-Games-Launcher/HeroicGamesLauncher/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")' | sed 's/^v//')
