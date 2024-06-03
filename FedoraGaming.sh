@@ -27,6 +27,7 @@ fedora_version=$(rpm -E %fedora)
 dnf install -y "https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-${fedora_version}.noarch.rpm" \
                 "https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-${fedora_version}.noarch.rpm"
 dnf update -y
+dnf upgrade -y --refresh
 
 # Add Flathub repo
 dnf install -y flatpak
@@ -55,7 +56,7 @@ flatpak install -y flathub com.obsproject.Studio
 flatpak install -y flathub com.sindresorhus.Caprine
 flatpak install -y flathub com.parsecgaming.parsec
 flatpak install -y flathub one.ablaze.floorp
-flatpak install -y flathub net.davidotek.pupgui2
+flatpak install -y flathub net.davidotek.pupgui2 # ProtonUp-Qt
 
 # Install Heroic Games Launcher
 latest_version=$(curl -sL https://api.github.com/repos/Heroic-Games-Launcher/HeroicGamesLauncher/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")' | sed 's/^v//')
