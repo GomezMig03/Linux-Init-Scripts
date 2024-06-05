@@ -50,6 +50,7 @@ dnf install git -y
 dnf install wine -y
 dnf install okular -y
 dnf install krita -y
+dnf install vlc -y
 
 # Install Flatpak applications
 flatpak install -y flathub com.obsproject.Studio
