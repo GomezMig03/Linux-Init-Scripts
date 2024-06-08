@@ -29,6 +29,32 @@ dnf install -y "https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release
 dnf update -y
 dnf upgrade -y --refresh
 
+# Check if user has nvidia gpu
+gpu=$(lspci | grep -E -i "nvidia" | grep -E "VGA|3D");
+
+# Installation of nvidia drivers
+if [ -n "$gpu" ]; then
+while true; do
+        read -rp "NVIDIA card found, do you wish to install NVIDIA proprietary drivers? (Y/n): " res
+        case $res in
+            [Yy]* | "" )
+                echo "Installing drivers..."
+                dnf install akmod-nvidia -y
+                dnf install xorg-x11-drv-nvidia-cuda -y
+                dnf install xorg-x11-drv-nvidia-cuda-libs -y
+                break;
+                ;;
+            [Nn]* )
+                echo "NVIDIA drivers won't be installed"
+                break;
+                ;;
+            *)
+                echo "Please, enter a valid value (Y/n)"
+                ;; 
+        esac
+    done
+fi
+
 # Add Flathub repo
 dnf install -y flatpak
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
