@@ -102,7 +102,7 @@ echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com
 dnf check-update -y
 dnf install -y code
 
-# Download and install WebStorm
+# Download WebStorm
 wget "https://download.jetbrains.com/webstorm/WebStorm-2024.1.3.tar.gz" -O WebStorm.tar.gz
 webstorm_version=$(tar tf WebStorm.tar.gz | head -n 1 | cut -d '/' -f 1)
 tar -xzvf WebStorm.tar.gz
