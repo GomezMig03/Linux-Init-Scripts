@@ -1,6 +1,40 @@
 #!/bin/bash
 
-sudo dnf install -y alsa-lib-devel cups-devel dbus-libs fontconfig-devel freetype-devel glibc-devel.i686 gnutls-devel gstreamer1-devel gstreamer1-plugins-base-devel libgphoto2-devel libunwind-devel libusbx-devel libX11-devel libXcomposite-devel libXcursor-devel libXext-devel libXfixes-devel libXi-devel libXrandr-devel libXrender-devel mesa-libGL-devel mesa-libOSMesa-devel mingw32-gcc mingw64-gcc ocl-icd-devel samba-devel sane-backends-devel SDL2-devel vulkan-headers vulkan-loader vulkan-loader-devel
+# Check package manager
+
+havePM() {
+    [ -x "$(which $1)" ]
+}
+
+pacmanInstall(){
+  sudo pacman -Syu --noconfirm alsa-lib alsa-plugins cups desktop-file-utils dosbox ffmpeg fontconfig freetype2 gcc-libs gettext giflib gnutls gst-plugins-base-libs gtk3 libgphoto2 libpcap libpulse libva libxcomposite libxcursor libxi libxinerama libxrandr mingw-w64-gcc opencl-headers opencl-icd-loader samba sane sdl2 v4l-utils vulkan-icd-loader wine-mono
+}
+
+dnfInstall(){
+  sudo dnf install -y alsa-lib-devel cups-devel dbus-libs fontconfig-devel freetype-devel glibc-devel.i686 gnutls-devel gstreamer1-devel gstreamer1-plugins-base-devel libgphoto2-devel libunwind-devel libusbx-devel libX11-devel libXcomposite-devel libXcursor-devel libXext-devel libXfixes-devel libXi-devel libXrandr-devel libXrender-devel mesa-libGL-devel mesa-libOSMesa-devel mingw32-gcc mingw64-gcc ocl-icd-devel samba-devel sane-backends-devel SDL2-devel vulkan-headers vulkan-loader vulkan-loader-devel
+}
+
+aptInstall(){
+  sudo apt install -y gcc-mingw-w64 gcc-multilib libasound2-dev libcups2-dev libdbus-1-dev libfontconfig-dev libfreetype-dev libgl-dev libgnutls28-dev libgphoto2-dev libgstreamer-plugins-base1.0-dev libgstreamer1.0-dev libosmesa6-dev libpcap-dev libpulse-dev libsane-dev libsdl2-dev libudev-dev libunwind-dev libusb-1.0-0-dev libvulkan-dev libx11-dev libxcomposite-dev libxcursor-dev libxext-dev libxfixes-dev libxi-dev libxrandr-dev libxrender-dev ocl-icd-opencl-dev samba-dev
+}
+
+zypperInstall(){
+  sudo zypper install -y -t pattern devel_basis ccache gcc-32bit bison-32bit
+}
+
+# Installing the necesary dependencies for wine building
+if havePM pacman; then 
+  pacmanInstall
+elif havePM dnf; then 
+  dnfInstall
+elif havePM apt; then 
+  aptInstall
+elif havePM zypper; then 
+  zypperInstall
+else 
+  echo 'No package manager found. Please install the dependencies listed at: https://wiki.winehq.org/Building_Wine#Satisfying_Build_Dependencies'
+fi
+
 
 git clone https://gitlab.com/xkero/rum $HOME/Documents/rum
 
