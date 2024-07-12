@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Download WebStorm
 wget "https://download.jetbrains.com/webstorm/WebStorm-2024.1.3.tar.gz" -O WebStorm.tar.gz
 webstorm_version=$(tar tf WebStorm.tar.gz | head -n 1 | cut -d '/' -f 1)
