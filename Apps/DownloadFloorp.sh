@@ -1,10 +1,13 @@
 #!/bin/bash
 
+# Get architecture
+arq=$(uname -m)
+
 # Download floorp
 floorp_version=$(curl -sL https://api.github.com/repos/Floorp-Projects/Floorp/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")' | sed 's/^v//')
-wget "https://github.com/Floorp-Projects/Floorp/releases/download/v${floorp_version}/floorp-${floorp_version}.linux-x86_64.tar.bz2"
-tar -xjvf "floorp-${floorp_version}.linux-x86_64.tar.bz2"
-rm -r "floorp-${floorp_version}.linux-x86_64.tar.bz2"
+wget "https://github.com/Floorp-Projects/Floorp/releases/download/v${floorp_version}/floorp-${floorp_version}.linux-${arq}.tar.bz2"
+tar -xjvf "floorp-${floorp_version}.linux-${arq}.tar.bz2"
+rm -r "floorp-${floorp_version}.linux-${arq}.tar.bz2"
 mv "floorp" /usr/local/bin/
 rm -r "floorp"
 

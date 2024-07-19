@@ -1,7 +1,16 @@
 #!/bin/bash
 
+# Get arquitecture
+arq=$(uname -m)
+if [ "$arq" == "x86_64" ]; then
+    arq=""
+elif [ "$arq" == "aarch64" ]; then
+    arq="-$arq"
+fi
+
+
 # Download WebStorm
-wget "https://download.jetbrains.com/webstorm/WebStorm-2024.1.5.tar.gz" -O WebStorm.tar.gz
+wget "https://download.jetbrains.com/webstorm/WebStorm-2024.1.5${arq}.tar.gz" -O WebStorm.tar.gz
 webstorm_version=$(tar tf WebStorm.tar.gz | head -n 1 | cut -d '/' -f 1)
 tar -xzvf WebStorm.tar.gz
 mv "$webstorm_version" /usr/local/bin/
