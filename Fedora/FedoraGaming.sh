@@ -77,6 +77,7 @@ dnf install lutris -y
 dnf install discord -y
 dnf install git -y
 dnf install wine -y
+dnf install winetricks -y
 dnf install okular -y
 dnf install krita -y
 dnf install vlc -y
@@ -87,6 +88,11 @@ flatpak install -y flathub com.sindresorhus.Caprine
 flatpak install -y flathub com.parsecgaming.parsec
 flatpak install -y flathub net.davidotek.pupgui2 # ProtonUp-Qt
 flatpak install -y flathub one.ablaze.floorp
+
+# Add flathub beta for protontricks
+flatpak remote-add --if-not-exists flathub-beta https://flathub.org/beta-repo/flathub-beta.flatpakrepo
+flatpak install flathub-beta com.github.Matoking.protontricks
+
 
 # Install Heroic Games Launcher
 if [ "$arq" = "aarch64" ]; then

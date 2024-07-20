@@ -77,8 +77,13 @@ dnf install lutris -y
 dnf install discord -y
 dnf install git -y
 dnf install wine -y
+dnf install winetricks -y
 
 flatpak install -y flathub net.davidotek.pupgui2 # ProtonUp-Qt
+
+# Add flathub beta for protontricks
+flatpak remote-add --if-not-exists flathub-beta https://flathub.org/beta-repo/flathub-beta.flatpakrepo
+flatpak install flathub-beta com.github.Matoking.protontricks
 
 # Install Heroic Games Launcher
 
