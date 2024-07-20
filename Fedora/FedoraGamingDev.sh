@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Get arquitecture
+arq=$(uname -m)
+
 # Ensure the script is run with superuser privileges
 if [[ $EUID -ne 0 ]]; then
    echo "This script must be run as root"
@@ -86,10 +89,15 @@ flatpak install -y flathub net.davidotek.pupgui2 # ProtonUp-Qt
 flatpak install -y flathub one.ablaze.floorp
 
 # Install Heroic Games Launcher
-latest_version=$(curl -sL https://api.github.com/repos/Heroic-Games-Launcher/HeroicGamesLauncher/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")' | sed 's/^v//')
-wget "https://github.com/Heroic-Games-Launcher/HeroicGamesLauncher/releases/download/v${latest_version}/heroic-${latest_version}.x86_64.rpm"
-dnf install -y "heroic-${latest_version}.x86_64.rpm"
-rm "heroic-${latest_version}.x86_64.rpm"
+if [ "$arq" = "aarch64" ]; then
+    echo "Your system architecture is not yet compatible with Heroic Games Launcher"
+else 
+    latest_version=$(curl -sL https://api.github.com/repos/Heroic-Games-Launcher/HeroicGamesLauncher/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")' | sed 's/^v//')
+    wget "https://github.com/Heroic-Games-Launcher/HeroicGamesLauncher/releases/download/v${latest_version}/heroic-${latest_version}.x86_64.rpm"
+    dnf install -y "heroic-${latest_version}.x86_64.rpm"
+    rm "heroic-${latest_version}.x86_64.rpm"
+fi
+
 
 # Install prerequisites for EmuDeck
 dnf install -y jq rsync unzip zenity
@@ -103,7 +111,13 @@ dnf check-update -y
 dnf install -y code
 
 # Download WebStorm
-wget "https://download.jetbrains.com/webstorm/WebStorm-2024.1.5.tar.gz" -O WebStorm.tar.gz
+if [ "$arq" = "aarch64" ]; then
+webstormArch="-aarch64"
+else
+webstormArch=""
+fi
+
+wget "https://download.jetbrains.com/webstorm/WebStorm-2024.1.5$webstormArch.tar.gz" -O WebStorm.tar.gz
 webstorm_version=$(tar tf WebStorm.tar.gz | head -n 1 | cut -d '/' -f 1)
 tar -xzvf WebStorm.tar.gz
 mv "$webstorm_version" /usr/local/bin/

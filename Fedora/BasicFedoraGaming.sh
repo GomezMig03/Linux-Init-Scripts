@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Get arquitecture
+arq=$(uname -m)
+
 # Ensure the script is run with superuser privileges
 if [[ $EUID -ne 0 ]]; then
    echo "This script must be run as root"
@@ -79,13 +82,15 @@ flatpak install -y flathub net.davidotek.pupgui2 # ProtonUp-Qt
 
 # Install Heroic Games Launcher
 
-read -p "Do you want to install Heroic Games launcher? (y/N):" userSelect1
+read -p "Do you want to install Heroic Games launcher? (y/N): " userSelect1
 
-if [ $userSelect1 = "y" ]; then 
+if [ "$userSelect1" = "y" ] && [ "$arq" = "x86_64" ]; then
     latest_version=$(curl -sL https://api.github.com/repos/Heroic-Games-Launcher/HeroicGamesLauncher/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")' | sed 's/^v//')
     wget "https://github.com/Heroic-Games-Launcher/HeroicGamesLauncher/releases/download/v${latest_version}/heroic-${latest_version}.x86_64.rpm"
     dnf install -y "heroic-${latest_version}.x86_64.rpm"
     rm "heroic-${latest_version}.x86_64.rpm"
+elif [ "$userSelect1" = "y" ] && [ "$arq" = "aarch64" ]; then
+    echo "Your system architecture is not yet compatible with Heroic Games Launcher"
 fi
 
 read -p "Do you want to install EmuDeck prerequisites? (y/N):" userSelect2
