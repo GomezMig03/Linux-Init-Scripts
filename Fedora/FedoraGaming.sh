@@ -131,3 +131,5 @@ done
 
 # Install prerequisites for EmuDeck
 dnf install -y jq rsync unzip zenity
+
+echo "All installations and configurations are complete."

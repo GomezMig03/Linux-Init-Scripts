@@ -121,3 +121,5 @@ read -p "Do you want to install EmuDeck prerequisites? (y/N):" userSelect2
 if [ $userSelect2 = "y" ]; then 
     dnf install -y jq rsync unzip zenity
 fi
+
+echo "All installations and configurations are complete."
