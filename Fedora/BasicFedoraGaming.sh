@@ -93,6 +93,29 @@ elif [ "$userSelect1" = "y" ] && [ "$arq" = "aarch64" ]; then
     echo "Your system architecture is not yet compatible with Heroic Games Launcher"
 fi
 
+while [ -n "$filtered_output" ]; do
+    read -p "NTFS drives were found, do you want to add them to fstab with mount permissions for default (uid=1000 & gid=1000) user? This will allow steam to boot windows games stored there (Y/n): " response
+
+    # Check the user's response
+    if [ "$response" = "y" ] || [ -z "$response" ]; then
+    sudo cp /etc/fstab /etc/fstabBackup
+    echo "fstab backup created at /etc/fstabBackup"
+
+    index=1
+        while IFS= read -r line; do
+            echo "$line /mnt/disk$index ntfs defaults,uid=1000,gid=1000 0 2" >> /etc/fstab
+            echo "Added line to fstab: $line /mnt/disk$index ntfs defaults,uid=1000,gid=1000 0 2"
+            # TODO: Options to add permissions for extra users 
+            sudo mkdir -p /mnt/disk$index
+            ((index++))
+            done <<< "$filtered_output"
+        sudo mount -a
+        break
+    elif [ "$response" = "n" ]; then
+        break
+    fi
+done
+
 read -p "Do you want to install EmuDeck prerequisites? (y/N):" userSelect2
 
 if [ $userSelect2 = "y" ]; then 

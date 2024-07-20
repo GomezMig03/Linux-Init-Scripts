@@ -98,5 +98,36 @@ else
     rm "heroic-${latest_version}.x86_64.rpm"
 fi
 
+# Check if user has ntfs drives
+filter1=$(blkid | grep -v -E 'LABEL="Windows RE tools|SYSTEM|RECOVERY|fedora|zram0"')  
+filter2=$(echo "$filter1" | grep -v -E -i 'PARTLABEL="EFI system partition"|PARTLABEL="Microsoft reserved partition"')
+filter3=$(echo "$filter2" | grep -v '/dev/sda[0-9]*:')
+filter4=$(echo "$filter3" | grep -i 'TYPE="ntfs"')
+#echo "$filter4"
+filtered_output=$(echo "$filter4" | sed 's/PARTUUID="[a-zA-Z0-9-]*"//g' | grep -oP 'UUID="[^"]+"' | tr -d '"')
+
+while [ -n "$filtered_output" ]; do
+    read -p "NTFS drives were found, do you want to add them to fstab with mount permissions for default (uid=1000 & gid=1000) user? This will allow steam to boot windows games stored there (Y/n): " response
+
+    # Check the user's response
+    if [ "$response" = "y" ] || [ -z "$response" ]; then
+    sudo cp /etc/fstab /etc/fstabBackup
+    echo "fstab backup created at /etc/fstabBackup"
+
+    index=1
+        while IFS= read -r line; do
+            echo "$line /mnt/disk$index ntfs defaults,uid=1000,gid=1000 0 2" >> /etc/fstab
+            echo "Added line to fstab: $line /mnt/disk$index ntfs defaults,uid=1000,gid=1000 0 2"
+            # TODO: Options to add permissions for extra users 
+            sudo mkdir -p /mnt/disk$index
+            ((index++))
+            done <<< "$filtered_output"
+        sudo mount -a
+        break
+    elif [ "$response" = "n" ]; then
+        break
+    fi
+done
+
 # Install prerequisites for EmuDeck
 dnf install -y jq rsync unzip zenity
