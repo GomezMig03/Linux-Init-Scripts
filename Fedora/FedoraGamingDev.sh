@@ -127,9 +127,6 @@ while [ -n "$filtered_output" ]; do
     fi
 done
 
-# Install prerequisites for EmuDeck
-dnf install -y jq rsync unzip zenity
-
 # Developer tools installation
 
 # Install Visual Studio Code
@@ -176,6 +173,13 @@ fnm default lts
 
 # Install utilities for developers of Java and C#
 dnf install -y neovim python3-neovim dotnet-sdk-8.0 java-latest-openjdk-devel.x86_64 aspnetcore-runtime-8.0 java-latest-openjdk.x86_64
+
+read -p "Do you want to install EmuDeck right now? (y/N):" userSelect
+
+if [ $userSelect = "y" ]; then 
+    dnf install -y jq rsync unzip zenity
+    sh -c 'curl -L https://raw.githubusercontent.com/dragoonDorise/EmuDeck/main/install.sh | bash'
+fi
 
 # Print completion message
 echo "All installations and configurations are complete."

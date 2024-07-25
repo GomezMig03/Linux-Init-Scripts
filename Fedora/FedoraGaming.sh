@@ -135,7 +135,11 @@ while [ -n "$filtered_output" ]; do
     fi
 done
 
-# Install prerequisites for EmuDeck
-dnf install -y jq rsync unzip zenity
+read -p "Do you want to install EmuDeck right now? (y/N):" userSelect
+
+if [ $userSelect = "y" ]; then 
+    dnf install -y jq rsync unzip zenity
+    sh -c 'curl -L https://raw.githubusercontent.com/dragoonDorise/EmuDeck/main/install.sh | bash'
+fi
 
 echo "All installations and configurations are complete."
