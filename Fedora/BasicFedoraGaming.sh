@@ -131,4 +131,10 @@ if [ $userSelect2 = "y" ]; then
     sh -c 'curl -L https://raw.githubusercontent.com/dragoonDorise/EmuDeck/main/install.sh | bash'
 fi
 
+read -p "Do you want to install Davinci Resolve needed dependencies? (y/N)" userSelect3
+
+if [ $userSelect3 = "y" ]; then
+    dnf install -y apr apr-util mesa-libGLU libxcrypt-compat
+fi
+
 echo "All installations and configurations are complete."
