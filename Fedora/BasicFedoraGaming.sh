@@ -62,6 +62,9 @@ fi
 dnf install -y flatpak
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
+# Add anime game launcher repo
+flatpak remote-add --if-not-exists --user launcher.moe https://gol.launcher.moe/gol.launcher.moe.flatpakrepo
+
 # Enable openh264
 dnf config-manager --enable fedora-cisco-openh264
 
