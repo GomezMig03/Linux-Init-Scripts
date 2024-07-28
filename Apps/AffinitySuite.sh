@@ -42,8 +42,6 @@ sudo cp $HOME/Documents/rum/rum /usr/local/bin/rum
 
 rm -rf "$HOME/Documents/rum"
 
-echo "Compiling modified wine version, this may take a while..."
-
 get_user_cores() {
   echo "How many cores do you want to use for the compilation? 
 Take into consideration this is a long process and using more cores will make it faster, 
@@ -57,6 +55,8 @@ while ! [[ "$userCores" =~ ^[0-9]+$ ]] || [ "$userCores" -lt 1 ] || [ "$userCore
   echo "Invalid input. Please enter a number between 1 and $(nproc)."
   get_user_cores
 fi
+
+echo "Compiling modified wine version, this may take a while..."
 
 git clone https://gitlab.winehq.org/ElementalWarrior/wine.git ElementalWarrior-wine
 
