@@ -84,6 +84,14 @@ dnf install winetricks -y
 
 flatpak install -y flathub net.davidotek.pupgui2 # ProtonUp-Qt
 
+read -p "Do you want to install Fightcade? (y/N): " fightcadeSelect
+
+if [ "$fightcadeSelect" = "y" ] && [ "$arq" = "x86_64" ]; then
+    flatpak install -y flathub com.fightcade.Fightcade
+elif [ "$userSelect1" = "y" ] && [ "$arq" = "aarch64" ]; then
+    echo "Your system architecture is not yet compatible with Figthcade"
+fi
+
 # Add flathub beta for protontricks
 flatpak remote-add --if-not-exists flathub-beta https://flathub.org/beta-repo/flathub-beta.flatpakrepo
 flatpak install flathub-beta com.github.Matoking.protontricks
