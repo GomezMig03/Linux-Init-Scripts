@@ -183,6 +183,9 @@ dnf install -y neovim python3-neovim dotnet-sdk-8.0 java-latest-openjdk-devel.x8
 # Install Rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 
+# Add Cargo to the PATH
+echo 'source $HOME/.cargo/env' >> ~/.bashrc
+
 read -p "Do you want to install EmuDeck right now? (y/N):" userSelect
 
 if [ $userSelect = "y" ]; then 
