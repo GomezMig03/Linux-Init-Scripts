@@ -180,6 +180,9 @@ fnm default lts
 # Install utilities for developers of Java and C#
 dnf install -y neovim python3-neovim dotnet-sdk-8.0 java-latest-openjdk-devel.x86_64 aspnetcore-runtime-8.0 java-latest-openjdk.x86_64
 
+# Install Rust
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+
 read -p "Do you want to install EmuDeck right now? (y/N):" userSelect
 
 if [ $userSelect = "y" ]; then 
