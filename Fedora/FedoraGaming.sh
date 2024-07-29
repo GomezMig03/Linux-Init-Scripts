@@ -87,6 +87,7 @@ dnf install winetricks -y
 dnf install okular -y
 dnf install krita -y
 dnf install vlc -y
+dnf install feh -y
 
 # Install Flatpak applications
 flatpak install -y flathub com.obsproject.Studio
