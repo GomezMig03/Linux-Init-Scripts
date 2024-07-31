@@ -110,6 +110,8 @@ elif [ "$userSelect1" = "y" ] && [ "$arq" = "aarch64" ]; then
     echo "Your system architecture is not yet compatible with Heroic Games Launcher"
 fi
 
+filtered_output=$(sudo blkid | awk '!/Windows RE tools|SYSTEM|RECOVERY|Fedora/' | grep 'TYPE="ntfs"' | grep -woP 'UUID="\K[^"]+')
+
 while [ -n "$filtered_output" ]; do
     read -p "NTFS drives were found, do you want to add them to fstab with mount permissions for default (uid=1000 & gid=1000) user? This will allow steam to boot windows games stored there (Y/n): " response
 

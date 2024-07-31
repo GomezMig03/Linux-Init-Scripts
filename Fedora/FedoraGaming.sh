@@ -115,12 +115,7 @@ else
 fi
 
 # Check if user has ntfs drives
-filter1=$(blkid | grep -v -E 'LABEL="Windows RE tools|SYSTEM|RECOVERY|fedora|zram0"')  
-filter2=$(echo "$filter1" | grep -v -E -i 'PARTLABEL="EFI system partition"|PARTLABEL="Microsoft reserved partition"')
-filter3=$(echo "$filter2" | grep -v '/dev/sda[0-9]*:')
-filter4=$(echo "$filter3" | grep -i 'TYPE="ntfs"')
-#echo "$filter4"
-filtered_output=$(echo "$filter4" | sed 's/PARTUUID="[a-zA-Z0-9-]*"//g' | grep -oP 'UUID="[^"]+"' | tr -d '"')
+filtered_output=$(sudo blkid | awk '!/Windows RE tools|SYSTEM|RECOVERY|Fedora/' | grep 'TYPE="ntfs"' | grep -woP 'UUID="\K[^"]+')
 
 while [ -n "$filtered_output" ]; do
     read -p "NTFS drives were found, do you want to add them to fstab with mount permissions for default (uid=1000 & gid=1000) user? This will allow steam to boot windows games stored there (Y/n): " response
