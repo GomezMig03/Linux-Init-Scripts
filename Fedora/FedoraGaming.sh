@@ -87,6 +87,7 @@ dnf install winetricks -y
 dnf install okular -y
 dnf install krita -y
 dnf install vlc -y
+dnf install feh -y
 
 # Install Flatpak applications
 flatpak install -y flathub com.obsproject.Studio
@@ -94,6 +95,8 @@ flatpak install -y flathub com.sindresorhus.Caprine
 flatpak install -y flathub com.parsecgaming.parsec
 flatpak install -y flathub net.davidotek.pupgui2 # ProtonUp-Qt
 flatpak install -y flathub one.ablaze.floorp
+flatpak install -y flathub com.fightcade.Fightcade
+flatpak install -y flathub org.prismlauncher.PrismLauncher
 
 # Add flathub beta for protontricks
 flatpak remote-add --if-not-exists flathub-beta https://flathub.org/beta-repo/flathub-beta.flatpakrepo
