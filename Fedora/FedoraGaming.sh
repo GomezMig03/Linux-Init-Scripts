@@ -42,6 +42,7 @@ while true; do
         case $res in
             [Yy]* | "" )
                 echo "Installing drivers..."
+                dnf install kernel-devel kernel-headers gcc gc make dkms acpid libglvnd-glx libglvnd-opengl libglvnd-devel pkgconfig -y
                 dnf install akmod-nvidia -y
                 dnf install xorg-x11-drv-nvidia-cuda -y
                 dnf install xorg-x11-drv-nvidia-cuda-libs -y
