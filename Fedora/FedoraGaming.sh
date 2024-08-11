@@ -86,9 +86,16 @@ dnf install git -y
 dnf install wine -y
 dnf install winetricks -y
 dnf install okular -y
-dnf install krita -y
 dnf install vlc -y
 dnf install feh -y
+
+read -p "Do you want to install Art programs? (y/N)" artSelect
+
+if [ $artSelect = "y" ] || [ $artSelect = "Y" ]; then 
+    dnf install krita -y 
+    dnf install Pencil2D -y
+    dnf install opentoonz -y
+fi
 
 # Install Flatpak applications
 flatpak install -y flathub com.obsproject.Studio

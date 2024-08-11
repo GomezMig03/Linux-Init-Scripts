@@ -87,6 +87,8 @@ dnf install wine -y
 dnf install winetricks -y
 dnf install okular -y
 dnf install krita -y
+dnf install Pencil2D -y
+dnf install opentoonz -y
 dnf install vlc -y
 dnf install feh -y
 
