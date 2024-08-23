@@ -5,7 +5,8 @@ arq=$(uname -m)
 
 # Ensure the script is run with superuser privileges
 if [[ $EUID -ne 0 ]]; then
-   echo "This script must be run as root"
+   echo "This script must be run with superuser rights"
+   exec pkexec "$0" "$@"
    exit 1
 fi
 
