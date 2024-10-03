@@ -145,7 +145,7 @@ done
 
 # Developer tools installation
 
-# Install Neovim and delte old vim files to avoid problems
+# Install Neovim and delete old vim files to avoid problems
 dnf install -y neovim python3-neovim
 dnf remove -y vim
 rm -r /usr/share/vim/vimfiles
