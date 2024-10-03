@@ -147,7 +147,6 @@ done
 
 # Install Neovim and delete old vim files to avoid problems
 dnf install -y neovim python3-neovim
-dnf remove -y vim
 rm -r /usr/share/vim/vimfiles
 
 # Install Visual Studio Code
