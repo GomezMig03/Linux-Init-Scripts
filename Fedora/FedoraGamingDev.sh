@@ -145,6 +145,11 @@ done
 
 # Developer tools installation
 
+# Install Neovim and delte old vim files to avoid problems
+dnf install -y neovim python3-neovim
+dnf remove -y vim
+rm -r /usr/share/vim/vimfiles
+
 # Install Visual Studio Code
 rpm --import https://packages.microsoft.com/keys/microsoft.asc
 echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" | tee /etc/yum.repos.d/vscode.repo > /dev/null
