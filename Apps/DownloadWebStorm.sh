@@ -10,7 +10,7 @@ fi
 
 
 # Download WebStorm
-wget "https://download.jetbrains.com/webstorm/WebStorm-2024.2.0.1${arq}.tar.gz" -O WebStorm.tar.gz
+wget "https://download.jetbrains.com/webstorm/WebStorm-2024.2.3${arq}.tar.gz" -O WebStorm.tar.gz
 webstorm_version=$(tar tf WebStorm.tar.gz | head -n 1 | cut -d '/' -f 1)
 tar -xzvf WebStorm.tar.gz
 mv "$webstorm_version" /usr/local/bin/
