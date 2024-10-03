@@ -156,44 +156,8 @@ echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com
 dnf check-update -y
 dnf install -y code
 
-# Download WebStorm
-if [ "$arq" = "aarch64" ]; then
-webstormArch="-aarch64"
-else
-webstormArch=""
-fi
-
-wget "https://download.jetbrains.com/webstorm/WebStorm-2024.1.5$webstormArch.tar.gz" -O WebStorm.tar.gz
-webstorm_version=$(tar tf WebStorm.tar.gz | head -n 1 | cut -d '/' -f 1)
-tar -xzvf WebStorm.tar.gz
-mv "$webstorm_version" /usr/local/bin/
-rm WebStorm.tar.gz
-
-# Create the WebStorm desktop file
-webstorm_file="/usr/share/applications/webstorm.desktop"
-cat > $webstorm_file << EOF
-[Desktop Entry]
-Type=Application
-Name=JetBrains WebStorm
-Exec=/usr/local/bin/${webstorm_version}/bin/webstorm.sh %f
-Icon=/usr/local/bin/${webstorm_version}/bin/webstorm.png
-Comment=Develop with pleasure!
-Categories=Development;IDE;
-Terminal=false
-StartupNotify=true
-StartupWMClass=jetbrains-webstorm
-EOF
-
-chmod +x $webstorm_file
-update-desktop-database
-
-# Install Node.js using fnm
-curl -fsSL https://fnm.vercel.app/install | bash
-fnm install --lts
-fnm default lts
-
 # Install utilities for developers of Java and C#
-dnf install -y neovim python3-neovim dotnet-sdk-8.0 java-latest-openjdk-devel.x86_64 aspnetcore-runtime-8.0 java-latest-openjdk.x86_64
+dnf install -y dotnet-sdk-8.0 java-latest-openjdk-devel.x86_64 aspnetcore-runtime-8.0 java-latest-openjdk.x86_64
 
 # Install tauri dependecies
 sudo dnf -y install webkit2gtk4.0-devel \
