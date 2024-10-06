@@ -145,8 +145,9 @@ done
 
 # Developer tools installation
 
-# Install Neovim and delete old vim files to avoid problems
+# Install Neovim with kickstart and delete old vim files to avoid problems
 dnf install -y neovim python3-neovim
+git clone https://github.com/nvim-lua/kickstart.nvim.git "${XDG_CONFIG_HOME:-$HOME/.config}"/nvim
 rm -r /usr/share/vim/vimfiles
 
 # Install Visual Studio Code
