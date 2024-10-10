@@ -147,8 +147,14 @@ done
 
 # Install Neovim with kickstart and delete old vim files to avoid problems
 dnf install -y neovim python3-neovim
-git clone https://github.com/nvim-lua/kickstart.nvim.git "${XDG_CONFIG_HOME:-$HOME/.config}"/nvim
 rm -r /usr/share/vim/vimfiles
+
+read -p "If you have a fork of kickstart.nvim (and use neovim), write your github user to install it. If you want default write 'nvim-lua'. If you don't want it leave this blank: " ghuser
+
+if [ -n "$ghuser" ]; then
+    git clone https://github.com/"$ghuser"/kickstart.nvim.git "${XDG_CONFIG_HOME:-$HOME/.config}"/nvim
+fi
+
 
 # Install Visual Studio Code
 rpm --import https://packages.microsoft.com/keys/microsoft.asc
