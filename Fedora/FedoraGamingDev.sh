@@ -102,6 +102,7 @@ flatpak install -y flathub net.davidotek.pupgui2 # ProtonUp-Qt
 flatpak install -y flathub one.ablaze.floorp
 flatpak install -y flathub com.fightcade.Fightcade
 flatpak install -y flathub org.prismlauncher.PrismLauncher
+flatpak install -y flathub io.github.zen_browser.zen 
 
 # Add flathub beta for protontricks
 flatpak remote-add --if-not-exists flathub-beta https://flathub.org/beta-repo/flathub-beta.flatpakrepo
