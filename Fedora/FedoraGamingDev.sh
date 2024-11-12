@@ -156,12 +156,6 @@ if [ -n "$ghuser" ]; then
 fi
 
 
-# Install Visual Studio Code
-rpm --import https://packages.microsoft.com/keys/microsoft.asc
-echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" | tee /etc/yum.repos.d/vscode.repo > /dev/null
-dnf check-update -y
-dnf install -y code
-
 # Install utilities for developers of Java and C#
 dnf install -y dotnet-sdk-8.0 java-latest-openjdk-devel.x86_64 aspnetcore-runtime-8.0 java-latest-openjdk.x86_64
 
