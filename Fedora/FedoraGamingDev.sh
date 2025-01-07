@@ -92,6 +92,7 @@ dnf install Pencil2D -y
 dnf install opentoonz -y
 dnf install vlc -y
 dnf install feh -y
+dnf install helvum -y
 
 # Install Flatpak applications
 flatpak install -y flathub com.obsproject.Studio
