@@ -136,11 +136,10 @@ while [ -n "$filtered_output" ]; do
     fi
 done
 
-read -p "Do you want to install EmuDeck right now? (y/N):" userSelect2
+read -p "Do you want to install EmuDeck dependencies? (y/N):" userSelect2
 
 if [ $userSelect2 = "y" ]; then 
     dnf install -y jq rsync unzip zenity
-    sh -c 'curl -L https://raw.githubusercontent.com/dragoonDorise/EmuDeck/main/install.sh | bash'
 fi
 
 read -p "Do you want to install Davinci Resolve needed dependencies? (y/N)" userSelect3

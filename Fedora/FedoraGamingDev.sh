@@ -172,13 +172,9 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 
 # Add Cargo to the PATH
 echo 'source $HOME/.cargo/env' >> ~/.bashrc
-
-read -p "Do you want to install EmuDeck right now? (y/N):" userSelect
-
-if [ $userSelect = "y" ]; then 
-    dnf install -y jq rsync unzip zenity
-    sh -c 'curl -L https://raw.githubusercontent.com/dragoonDorise/EmuDeck/main/install.sh | bash'
-fi
+ 
+# Install Emudeck dependencies
+dnf install -y jq rsync unzip zenity
 
 # Print completion message
 echo "All installations and configurations are complete."
