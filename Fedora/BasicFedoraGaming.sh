@@ -123,8 +123,8 @@ while [ -n "$filtered_output" ]; do
 
     index=1
         while IFS= read -r line; do
-            echo "$line /mnt/disk$index ntfs defaults,uid=1000,gid=1000 0 2" >> /etc/fstab
-            echo "Added line to fstab: $line /mnt/disk$index ntfs defaults,uid=1000,gid=1000 0 2"
+            echo "UUID=$line /mnt/disk$index ntfs defaults,uid=1000,gid=1000 0 2" >> /etc/fstab
+            echo "Added line to fstab: 'UUID=$line /mnt/disk$index ntfs defaults,uid=1000,gid=1000 0 2'"
             # TODO: Options to add permissions for extra users 
             sudo mkdir -p /mnt/disk$index
             ((index++))
