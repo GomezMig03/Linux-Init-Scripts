@@ -10,20 +10,6 @@ if [[ $EUID -ne 0 ]]; then
    exit 1
 fi
 
-# Adds faster updates
-dnf_directory="/etc/dnf/dnf.conf"
-cat > "$dnf_directory" << EOF
-[main] 
-gpgcheck=1 
-installonly_limit=3 
-clean_requirements_on_remove=True 
-best=False 
-skip_if_unavailable=True 
-fastestmirror=1 
-max_parallel_downloads=10 
-deltarpm=true
-EOF
-
 # Get Fedora version
 fedora_version=$(rpm -E %fedora)
 
