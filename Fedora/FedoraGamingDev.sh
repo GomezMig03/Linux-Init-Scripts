@@ -162,13 +162,16 @@ fi
 dnf install -y dotnet-sdk-8.0 java-latest-openjdk-devel.x86_64 aspnetcore-runtime-8.0 java-latest-openjdk.x86_64
 
 # Install tauri dependecies
-sudo dnf -y install webkit2gtk4.0-devel openssl-devel curl wget file gtk3-devel libappindicator-gtk3-devel ibrsvg2-devel lz4-devel
-    
+dnf install -y webkit2gtk4.0-devel gtk3-devel openssl-devel curl wget file gtk3-devel libappindicator-gtk3-devel librsvg2-devel lz4-devel libsoup3 libsoup3-devel
+dnf install -y  javascriptcoregtk4.0 javascriptcoregtk4.0-devel javascriptcoregtk4.1 javascriptcoregtk4.1-devel webkit2gtk4.1 webkit2gtk4.1-devel
+export PKG_CONFIG_PATH=/usr/lib/pkgconfig  
+
 sudo dnf -y group install "C Development Tools and Libraries"
 
 
 # Install Rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+dnf install -y rustc cargo
 
 # Add Cargo to the PATH
 echo 'source $HOME/.cargo/env' >> ~/.bashrc
