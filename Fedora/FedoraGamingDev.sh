@@ -152,12 +152,12 @@ dnf install -y webkit2gtk4.0-devel gtk3-devel openssl-devel curl wget file gtk3-
 dnf install -y  javascriptcoregtk4.0 javascriptcoregtk4.0-devel javascriptcoregtk4.1 javascriptcoregtk4.1-devel webkit2gtk4.1 webkit2gtk4.1-devel
 echo 'export PKG_CONFIG_PATH=/usr/lib/pkgconfig' >> ~/.bashrc
 
-sudo dnf -y group install "C Development Tools and Libraries"
-
-
 # Install Rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 dnf install -y rustc cargo
+
+# Installing C utilities
+dnf install -y clang llvm-devel glib-devel make cmake
 
 # Add Cargo to the PATH
 echo 'source $HOME/.cargo/env' >> ~/.bashrc
