@@ -76,17 +76,8 @@ dnf install okular -y
 dnf install vlc -y
 dnf install feh -y
 
-read -p "Do you want to install Art programs? (y/N)" artSelect
-
-if [ $artSelect = "y" ] || [ $artSelect = "Y" ]; then 
-    dnf install krita -y 
-    dnf install Pencil2D -y
-    dnf install opentoonz -y
-fi
-
 # Install Flatpak applications
 flatpak install -y flathub com.obsproject.Studio
-flatpak install -y flathub com.sindresorhus.Caprine
 flatpak install -y flathub com.parsecgaming.parsec
 flatpak install -y flathub dev.vencord.Vesktop
 flatpak install -y flathub net.davidotek.pupgui2 # ProtonUp-Qt
@@ -98,7 +89,6 @@ flatpak install -y flathub io.github.zen_browser.zen
 # Add flathub beta for protontricks
 flatpak remote-add --if-not-exists flathub-beta https://flathub.org/beta-repo/flathub-beta.flatpakrepo
 flatpak install flathub-beta com.github.Matoking.protontricks
-
 
 # Install Heroic Games Launcher
 if [ "$arq" = "aarch64" ]; then

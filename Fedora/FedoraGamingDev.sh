@@ -82,8 +82,7 @@ dnf install helvum -y
 
 # Install Flatpak applications
 flatpak install -y flathub com.obsproject.Studio
-flatpak install -y flathub com.sindresorhus.Caprine
-flatpak install -y flathub com.parsecgaming.
+flatpak install -y flathub com.parsecgaming.parsec
 flatpak install -y flathub dev.vencord.Vesktop
 flatpak install -y flathub net.davidotek.pupgui2 # ProtonUp-Qt
 flatpak install -y flathub one.ablaze.floorp
