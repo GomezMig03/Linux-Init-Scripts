@@ -103,29 +103,11 @@ fi
 # Check if user has ntfs drives
 filtered_output=$(sudo blkid | awk '!/Windows RE tools|SYSTEM|RECOVERY|Fedora/' | grep 'TYPE="ntfs"' | grep -woP 'UUID="\K[^"]+')
 
-while [ -n "$filtered_output" ]; do
-    read -p "NTFS drives were found, do you want to add them to fstab with mount permissions for default (uid=1000 & gid=1000) user? This will allow steam to boot windows games stored there (Y/n): " response
+if [ -n "$filtered_output" ]; then
+    echo -e "\nNTFS drives were found, if you want to play steam games store there properly, you may have to give them mount permissions for your user"
+    echo -e "For more information check https://wiki.archlinux.org/title/Steam/Troubleshooting#Steam_Library_in_NTFS_partition \n"
+fi
 
-    # Check the user's response
-    if [ "$response" = "y" ] || [ -z "$response" ]; then
-    sudo cp /etc/fstab /etc/fstabBackup
-    echo "fstab backup created at /etc/fstabBackup"
-
-    index=1
-        while IFS= read -r line; do
-            echo "UUID=$line /mnt/disk$index ntfs defaults,uid=1000,gid=1000 0 2" >> /etc/fstab
-            echo "Added line to fstab: 'UUID=$line /mnt/disk$index ntfs defaults,uid=1000,gid=1000 0 2'"
-            # TODO: Options to add permissions for extra users 
-            sudo mkdir -p /mnt/disk$index
-            ((index++))
-            done <<< "$filtered_output"
-        sudo mount -a
-        break
-    elif [ "$response" = "n" ]; then
-        break
-    fi
-done
- 
 # Install Emudeck dependencies
 dnf install -y jq rsync unzip zenity
 
