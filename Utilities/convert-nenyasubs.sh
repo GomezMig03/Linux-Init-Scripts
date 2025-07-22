@@ -56,4 +56,4 @@ fi
 file="${name#./}"
 nombre="${name%.*}"
 
-ffmpeg -i "${file}" -c:s srt "$dir/$nombre.srt" > echo "$item"
+ffmpeg -i "${file}" -c:s srt "$dir/$nombre.srt"
