@@ -2,7 +2,7 @@
 set -euo pipefail
 shopt -s nullglob
 
-dir="$(dirname "$1")"
+dir="$(pwd)"
 
 if [ -d "$dir/temp1" ]; then
 	rm -rf "$dir/temp1"
@@ -51,4 +51,4 @@ fi
 file="${name#./}"
 nombre="${name%.*}"
 
-ffmpeg -i "${file}" -c:s srt "$dir/../$nombre.srt"
+ffmpeg -i "${file}" -c:s srt "$dir/$nombre.srt" > echo "$item"
