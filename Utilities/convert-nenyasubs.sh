@@ -48,6 +48,10 @@ if [ -z "$name" ]; then
 	names=( ./*es.ass* )
 	name="${names[0]:-}"
 fi
+if [ -z "$name" ]; then
+	names=( ./*.ass* )
+	name="${names[0]:-}"
+fi
 
 if [ -z "$name" ]; then
 	echo "Error encontrando archivo .ass"
