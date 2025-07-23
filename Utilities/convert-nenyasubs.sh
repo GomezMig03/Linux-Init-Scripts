@@ -10,7 +10,7 @@ if [ -d "$dir/temp1" ]; then
 fi
 
 unzip -q "$1" -d ./temp1/
-#rm "$1"
+rm "$1"
 
 item=$(ls ./temp1/ | head -n1)
 cd "$dir"/temp1/
@@ -61,3 +61,5 @@ file="${name#./}"
 nombre="${name%.*}"
 
 ffmpeg -i "${file}" -c:s srt "$dir/$nombre.srt"
+
+rm -rf "$dir/temp1"
