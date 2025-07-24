@@ -20,19 +20,23 @@ shopt -s extglob
 case "$item" in
 	*.zip)
 		unzip -q "$item" -d "./"
+		rm "$item"
 	;;
 	*.rar)
 		unrar x -inul "$item" "./"
+		rm "$item"
 	;;
 	*.7z)
 		7z x -y "$item"
+		rm "$item"
+	;;
+	*.ass)
 	;;
 	*)
 		echo "no se encontró comprimido dentro del comprimido principal:"
 		echo "$item"
 	;;
 esac
-rm "$item"
 
 names=( ./*esES.ass )
 name="${names[0]:-}"
