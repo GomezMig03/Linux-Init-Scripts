@@ -62,6 +62,9 @@ dnf config-manager --add-repo "https://dl.winehq.org/wine-builds/fedora/${fedora
 # Install v4l2loopback kernel module for virtual camera support on OBS
 dnf install -y kmod-v4l2loopback
 
+# Install propietary video codecs
+dnf install -y vlc ffmpeg ffmpeg-libs gstreamer1-plugins-{bad-free,bad-free-extras,good,ugly} gstreamer1-libav
+
 # Install Davinci resolve needed dependencies
 dnf install -y apr apr-util mesa-libGLU libxcrypt-compat
 
