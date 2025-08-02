@@ -64,6 +64,14 @@ fi
 file="${name#./}"
 nombre="${name%.*}"
 
-ffmpeg -i "${file}" -c:s srt "$dir/$nombre.srt"
+ffmpeg -i "${file}" -c:s srt "$dir/$nombre-temp.srt"
 
 rm -rf "$dir/temp1"
+
+awk '
+BEGIN { RS=""; ORS="\n\n" }
+/{\\an8}/ { next }
+{ print }
+' "$dir/$nombre-temp.srt" > "$dir/$nombre.srt"
+
+rm "$dir/$nombre-temp.srt"
