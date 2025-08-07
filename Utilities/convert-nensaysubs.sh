@@ -21,14 +21,25 @@ convert_subs() {
 	case "$item" in
 		*.zip)
 			unzip -q "$item" -d "./"
+			if [ $? -ne 0 ]; then
+				echo "EL comando unzip falló sobre el archivo $item"
+			fi
 			rm "$item"
 		;;
 		*.rar)
 			unrar x -inul "$item" "./"
+			if [ $? -ne 0 ]; then
+				echo "EL comando unrar falló sobre el archivo $item"
+			fi
+
 			rm "$item"
 		;;
 		*.7z)
-			7z x -y "$item"
+			7z x -y "$item"	
+			if [ $? -ne 0 ]; then
+				echo "EL comando 7z falló sobre el archivo $item"
+			fi
+
 			rm "$item"
 		;;
 		*.ass)
