@@ -12,3 +12,6 @@ If this doesn't work you can try using ```bash``` before the ```./```, for examp
 bash ./BasicFedoraGaming.sh
 ```
 Make sure you are in the same directory as the file, you can see which is your current directory in the command line with ```pwd```, you can also see current directory archives with ```ls``` and move with ```cd```.
+
+## Utilities
+This directory includes misc scripts such as a parser and converter for subtitles downloaded from certain places.
