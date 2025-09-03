@@ -12,6 +12,3 @@ If this doesn't work you can try using ```bash``` before the ```./```, for examp
 bash ./BasicFedoraGaming.sh
 ```
 Make sure you are in the same directory as the file, you can see which is your current directory in the command line with ```pwd```, you can also see current directory archives with ```ls``` and move with ```cd```.
-
-## To do
-I would like to add scripts for other distros, as well as a GUI where you could select which programs to install or what tweaks to get.
